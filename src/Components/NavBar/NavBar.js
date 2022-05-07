@@ -1,16 +1,16 @@
 import {Navbar,Container,Nav} from 'react-bootstrap'
 import CartWidget from '../CartWidget/CartWidget';
 import { NavLink } from 'react-router-dom';
-import { getCategorias } from '../../Services/Categories';
+import { getCategories } from '../../Services/Categories';
 import { useState, useEffect} from "react";
 
 
 const NavBar = () =>{
-    const [categorias, setCategorias] = useState([])
+    const [categories, setCategories] = useState([])
     
     useEffect(()=>{
-      getCategorias().then((cates)=>{
-        setCategorias(cates)
+      getCategories().then((cates)=>{
+        setCategories(cates)
       })
     },[])
 
@@ -23,7 +23,7 @@ const NavBar = () =>{
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav  className="mr-auto">
               <NavLink to="/"className="nav-link">Inicio</NavLink>
-              {categorias&& categorias.map((item) =><NavLink key={item.id} to={"/categories/"+item.name} className="nav-link">{item.name}</NavLink> )}
+              {categories&& categories.map((item) =><NavLink key={item.id} to={"/categories/"+item.name} className="nav-link">{item.name}</NavLink> )}
             </Nav>
             <CartWidget/>
           </Navbar.Collapse>

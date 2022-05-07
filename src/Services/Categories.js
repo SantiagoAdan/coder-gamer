@@ -1,11 +1,11 @@
 import { collection, getDocs} from "firebase/firestore";
 import fireStoreDB  from "./Firebase";
 
-const colCatergorias = collection(fireStoreDB,'categories');
+const colCatergories = collection(fireStoreDB,'categories');
 
-  export const  getCategorias =  async ()=>{
+  export const  getCategories =  async ()=>{
     let cats = [];
-    await getDocs(colCatergorias).then(querySnapShot =>{
+    await getDocs(colCatergories).then(querySnapShot =>{
         cats = querySnapShot.docs.map(doc => {
           return {id: doc.id, ...doc.data()}
         })

@@ -4,17 +4,17 @@ import { useState, useContext } from "react";
 import  CartContext from "../../Context/CartContext";
 import { Link } from "react-router-dom";
   
-const ItemDetail = ({producto})=>{
+const ItemDetail = ({product: product})=>{
   
   const {agregarItem,existeEnCarrito} = useContext(CartContext)
   const [cantidad,setCantidad] = useState(0)
 
-  const onAdd = (knt)=>{
-    if(knt>0){
-      setCantidad(knt)
-      agregarItem({...producto, 'seleccionado':knt})
+  const onAdd = (qty)=>{
+    if(qty>0){
+      setCantidad(qty)
+      agregarItem({...product, 'seleccionado':qty})
     }else{
-      console.log('cantidad igual a cero')
+      console.log('0 products')
     }
     
   }
@@ -23,14 +23,14 @@ const ItemDetail = ({producto})=>{
       <Row>
          <Col style={{ textAlign: "center"}} className="justify-content-md-center d-flex">  
             <Card  style={{ width: '30rem'}}>
-                <Card.Header> <h3>{producto.name} </h3></Card.Header>
-                <Card.Img variant="top" src={producto.img} />
+                <Card.Header> <h3>{product.name} </h3></Card.Header>
+                <Card.Img variant="top" src={product.img} />
                 <Card.Body>
-                    <Card.Title>{producto.categories}</Card.Title>      
-                    <Card.Text>Precio: $ {producto.price}</Card.Text>
+                    <Card.Title>{product.categories}</Card.Title>      
+                    <Card.Text>Precio: $ {product.price}</Card.Text>
                     {
-                    (cantidad===0&&!existeEnCarrito(producto.id))?
-                    <ItemCount inicial={1} stock={producto.stock} onAdd={onAdd}></ItemCount>:
+                    (cantidad===0&&!existeEnCarrito(product.id))?
+                    <ItemCount inicial={1} stock={product.stock} onAdd={onAdd}></ItemCount>:
                     <Link className="btn btn-primary" to={'/cart'}>Ir al Carrito</Link> 
                     }
                     

@@ -8,18 +8,18 @@ import {
 } from "firebase/firestore";
 import fireStoreDB from "./Firebase";
 
-const colProductos = collection(fireStoreDB, "products");
+const colProducts = collection(fireStoreDB, "products");
 
-export const getProductos = async () => {
-  const querySnapshot = await getDocs(colProductos);
+export const getProducts = async () => {
+  const querySnapshot = await getDocs(colProducts);
 
   const prods = querySnapshot.docs.map((doc) => {
     return prods;
   });
 };
 
-export const getProductosCategoria = async (categoria) => {
-  const q = query(colProductos, where("categoria", "==", categoria));
+export const getProductsCategories = async (categories) => {
+  const q = query(colProducts, where("categories", "==", categories));
 
   let prods = [];
   await getDocs(q).then((querySnapShot) => {
@@ -30,7 +30,7 @@ export const getProductosCategoria = async (categoria) => {
   return prods;
 };
 
-export const getProductosId = async (id) => {
+export const getProductsId = async (id) => {
   const snap = await getDoc(doc(fireStoreDB, "products", id));
   const prod = { id: snap.id, ...snap.data() };
 

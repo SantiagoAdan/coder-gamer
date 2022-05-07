@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProductosId } from "../../Services/Products";
+import { getProductsId } from "../../Services/Products";
 import {useParams} from 'react-router-dom';
 import ItemDetail from "../ItemDetail/ItemDetail";
 
@@ -8,19 +8,19 @@ const ItemDetailContainer = ()=>{
 
     const {id} = useParams();
     useEffect(()=>{
-        getProductosId(id).then((producto)=>{
-            setProduct(producto)
+        getProductsId(id).then((product)=>{
+            setProduct(product)
       }).catch((e)=>{console.log(e);});
       return (()=>{setProduct({});})
 
     },[id]);
 
     if(!product){
-        return <>no hay productos</>;
+        return <>Sin productos</>;
     }
 
     return (
-        <ItemDetail producto={product}></ItemDetail>
+        <ItemDetail product={product}></ItemDetail>
     );
 }
 

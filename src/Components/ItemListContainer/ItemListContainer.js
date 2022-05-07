@@ -1,29 +1,29 @@
 import { useState, useEffect } from "react";
 import ItemList from '../ItemList/ItemList';
-import { getProductos, getProductosCategoria } from "../../Services/Products";
+import { getProducts, getProductsCategories } from "../../Services/Products";
 import {useParams} from 'react-router-dom';
 
 
 const ItemListContainer = ({saludo}) =>{
-  const [productos,setProductos] = useState([]);
-  const {categoria} = useParams();
+  const [products,setProducts] = useState([]);
+  const {categories} = useParams();
   useEffect(()=>{
-    if(categoria){
-      getProductosCategoria(categoria).then((products)=>{
-        setProductos(products) 
+    if(categories){
+      getProductsCategories(categories).then((products)=>{
+        setProducts(products) 
 
       });
     }else{
-      getProductos().then((products)=>{
-        setProductos(products)
+      getProducts().then((products)=>{
+        setProducts(products)
       });
     }
-  },[categoria]);
+  },[categories]);
 
   return (
     <div className="text-center">
         <h1>{saludo}</h1>
-        <ItemList productos={productos}></ItemList>
+        <ItemList products={products}></ItemList>
     </div>
   );
 }

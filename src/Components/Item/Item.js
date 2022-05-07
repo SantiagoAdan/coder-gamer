@@ -10,7 +10,7 @@ const Item = ({item}) =>{
                 <Card.Body>
                     <Card.Title>{item.name}</Card.Title>      
                     <Card.Text>$ {item.price}</Card.Text>
-                    {item.stock>0&&<Link className="btn btn-primary" to={'/productos/detalle/'+item.id}>Ver detalle de Producto</Link>}
+                    {item.stock>0&&<Link className="btn btn-primary" to={'/products/detail/'+item.id}>Ver detalle de Producto</Link>}
                 </Card.Body>
                 <Card.Footer>{item.stock>0?'Disponibles: ' + item.stock:'SIN STOCK'}</Card.Footer>
             </Card>  

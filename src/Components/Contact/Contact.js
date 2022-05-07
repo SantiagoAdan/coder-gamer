@@ -14,14 +14,14 @@ const Contacto =  ({ setMostrar}) =>{
     const onSubmit =  async(comprador) => {
 
         if(comprador.email !==comprador.email2){
-            setMsg("Las direecciones de correo eletrónico deben ser iguales")
+            setMsg("Las direcciones de correo eletrónico deben ser iguales")
             setTipoAlert('danger')
             return 
         }
         const id =  await nuevaOrden({cart,comprador}) 
         setIdOrden(id) 
         if(id!==''){
-            setMsg('Orden de Compra realizada. Nro: '+id)
+            setMsg('Orden Nro: '+id)
             setTipoAlert('success')
         }
     };
